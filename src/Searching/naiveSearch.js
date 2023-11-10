@@ -4,12 +4,8 @@ const naiveSearch = (string, subString) => {
     if (string[i] === subString[0]) {
       let SubCount = 0;
       for (let j = 0; j < subString.length; j++) {
-        if (string[i + j] === subString[j]) {
-          SubCount++;
-        }
-        if (SubCount === subString.length) {
-          count++;
-        }
+        if (string[i + j] === subString[j]) SubCount++;
+        if (SubCount === subString.length) count++;
       }
     }
   }
@@ -17,4 +13,16 @@ const naiveSearch = (string, subString) => {
   return count;
 };
 
-console.log(naiveSearch("hellosziabonjoursziasalut", "a"));
+const teacherSolution = (string, subString) => {
+  let count = 0;
+  for (let i = 0; i < string.length; i++) {
+    for (let j = 0; j < subString.length; j++) {
+      if (string[i + j] !== subString[j]) break;
+      if (j === subString.length - 1) count++;
+    }
+  }
+  return count;
+};
+
+console.log(naiveSearch("hellosziabonjoursziasalut", "szia"));
+console.log(teacherSolution("hellosziabonjoursziasalut", "szia"));
